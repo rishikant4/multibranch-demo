@@ -47,6 +47,9 @@ pipeline {
             }
 	   
            stage('Deploy to K8s') { 
+		    when {
+                branch 'develop'
+            }
                 steps{
                    echo "Deployment started ..."
 		   sh 'ls -ltr'
