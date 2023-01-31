@@ -15,20 +15,20 @@ pipeline {
 		}	
            }
            
-	   stage('Build') { 
+	   stage('Build in develop') { 
                 steps {
                   echo "Cleaning and packaging..."
                   sh 'mvn clean package'
                 }
            }
 	    
-	   stage('Test') { 
+	   stage('Test in develop') { 
 		steps {
 	          echo "Testing..."
 		  sh 'mvn test'
 		}
 	   }
-	   stage('Build Docker Image') { 
+	   stage('Build Docker Image in develop') { 
 		steps {
 		   sh 'whoami'
                    script {
@@ -36,7 +36,7 @@ pipeline {
                    }
                 }
 	   }
-	   stage("Push Docker Image") {
+	   stage("Push Docker Image in develop") {
                 steps {
                    script {
                       docker.withRegistry('https://registry.hub.docker.com', 'docker') {
@@ -46,7 +46,7 @@ pipeline {
                 }
             }
 	   
-           stage('Deploy to K8s') { 
+           stage('Deploy to GKE in staging') { 
                 steps{
                    echo "Deployment started ..."
 		   sh 'ls -ltr'
