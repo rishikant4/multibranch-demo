@@ -46,9 +46,9 @@ pipeline {
                 }
             }
 	   
-           stage('Deploy to K8s') { 
+           stage('Deploy to Prod') { 
 		    when {
-                branch 'develop'
+                branch 'main'
             }
                 steps{
                    echo "Deployment started ..."
