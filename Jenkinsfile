@@ -47,6 +47,9 @@ pipeline {
             }
 	   
            stage('Deploy to GKE in staging') { 
+		   when {
+                branch 'develop'
+            }
                 steps{
                    echo "Deployment started ..."
 		   sh 'ls -ltr'
