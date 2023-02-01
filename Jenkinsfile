@@ -24,10 +24,45 @@ pipeline {
 	    
 	   stage('Test in develop') { 
 		steps {
-	          echo "Testing..."
+	          echo "Testing in develop..."
 		  sh 'mvn test'
 		}
 	   }
+	    /* stage('Static code scan & Quality Gate Status') {
+            steps {
+                script {
+                    withSonarQubeEnv(credentialsId: "${sonar_cred}") {
+                        sh "${code_analysis}"
+                    }
+                    waitForQualityGate abortPipeline: true, credentialsId: "${sonar_cred}"
+                }
+            }
+        } 
+		stage('Upload Artifact to nexus') {
+            steps {
+                script {
+                    
+                    def mavenpom = readMavenPom file: 'pom.xml'
+                  
+                    nexusArtifactUploader artifacts: [
+                    [
+                        artifactId: 'k8sDemo',
+                        classifier: '',
+                        file: "target/k8sDemo-${mavenpom.version}.war",
+                        type: 'war'
+                    ]
+                ],
+                    credentialsId: "${env.nex_cred}",
+                    groupId: "${env.grp_ID}",
+                    nexusUrl: "${env.nex_url}",
+                    nexusVersion: "${env.nex_ver}",
+                    protocol: "${env.proto}",
+                    repository: 'nex_repo',
+                    version: "${mavenpom.version}"
+                    echo 'Artifact uploaded to nexus repository'
+                }
+            }
+        } */
 	   stage('Build Docker Image in develop') { 
 		steps {
 		   sh 'whoami'
