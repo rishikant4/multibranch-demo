@@ -3,7 +3,7 @@ pipeline {
 	environment {
 		
 		PROJECT_ID = 'calm-seeker-375715'
-                CLUSTER_NAME = 'gke'
+                CLUSTER_NAME = 'prod'
                 LOCATION = 'us-central1-c'
                 CREDENTIALS_ID = 'My First Project'		
 	}
