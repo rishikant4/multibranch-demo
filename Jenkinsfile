@@ -15,7 +15,7 @@ pipeline {
 		}	
            }
            
-	   stage('Build') { 
+	   stage('Build in Prod') { 
                 steps {
                   echo "Cleaning and packaging..."
                   sh 'mvn clean package'
