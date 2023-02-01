@@ -46,7 +46,7 @@ pipeline {
                 }
             }
 	   
-           stage('Deploy to GKE in staging') { 
+           stage('Deploy to staging') { 
 		   when {
                 branch 'develop'
             }
