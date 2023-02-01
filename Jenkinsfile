@@ -81,7 +81,7 @@ pipeline {
                 }
             }
 	   
-           stage('Deploy to staging') { 
+           stage('Deploy to staging env') { 
 		   when {
                 branch 'develop'
             }
